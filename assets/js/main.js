@@ -782,7 +782,20 @@ function getColors(){
 			console.log(fourthColor)
 			console.log(fifthColor)
 			let box = document.querySelector('.color0')
-			box.style.background = `linear-gradient(45deg, rgb(${firstColor}) 20%, rgb(${secondColor}) 60%, rgb(${thirdColor}))`
-			//box.style.background = '#000'
+			box.style.background = `linear-gradient(45deg, rgb(${firstColor}) 20%, rgb(${secondColor}) 40%, rgb(${thirdColor}) 60%, rgb(${fourthColor}) 80%, rgb(${fifthColor}) 100%)`
+
+			//color swatch background colors
+			document.querySelector('#colorOne').style.background = `rgb(${firstColor})`
+			document.querySelector('#colorTwo').style.background = `rgb(${secondColor})`
+			document.querySelector('#colorThree').style.background = `rgb(${thirdColor})`
+			document.querySelector('#colorFour').style.background = `rgb(${fourthColor})`
+			document.querySelector('#colorFive').style.background = `rgb(${fifthColor})`
+
+			//color swatch rgb values
+			document.querySelector('#sOne').innerText = `rgb(${firstColor})`
+			document.querySelector('#sTwo').innerText = `rgb(${secondColor})`
+			document.querySelector('#sThree').innerText = `rgb(${thirdColor})`
+			document.querySelector('#sFour').innerText = `rgb(${fourthColor})`
+			document.querySelector('#sFive').innerText = `rgb(${fifthColor})`
 		})
 	}

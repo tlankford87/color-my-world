@@ -72,6 +72,49 @@ input, select, textarea {
 	appearance: none;
 }
 
+#colorswatch{
+	display: flex;
+	flex-direction: column;
+}
+
+.swatch{
+	height: 20%;
+	flex: 1 1 18%;
+	
+}
+
+#colorOne{
+	background: rgb(66, 44, 45);
+}
+
+#colorTwo{
+	background: rgb(120, 96, 96);
+}
+
+#colorThree{
+	background: rgb(170, 137, 124);
+}
+
+#colorFour{
+	background: rgb(199, 224, 151);
+}
+
+#colorFive{
+	background: rgb(233, 209, 176);
+}
+
+.swatch span {
+	font-size: 1.2rem;
+	letter-spacing: .2rem;
+	font-weight: bold;
+	color: rgb(255, 255, 255);
+	padding: .5rem .5rem;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000,
+				-1px -1px 0 #000;
+	
+}
 /* Page */
 
 	@-moz-keyframes load-spinner {
@@ -2195,7 +2238,7 @@ input, select, textarea {
 		}
 
 			.panel > *.color0 {
-				background-image: url("../../images/overlay.png"), linear-gradient(45deg, #726193 20%, #e37b7c 60%, #ffe4b4);
+				background-image: url("../../images/overlay.png"), linear-gradient(45deg, rgb(66, 44, 45) 20%, rgb(120, 96, 96) 40%, rgb(170, 137, 124) 60%, rgb(199, 224, 151) 80%, rgb(233, 209, 176) 100%);
 				background-size: 128px 128px, auto;
 			}
 
