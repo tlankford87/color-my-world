@@ -761,7 +761,7 @@
 document.querySelector('.button').addEventListener('click', getColors)
 
 function getColors(){
-	const url = 'http://colormind.io/api/'
+	const url = 'https://www.google.ie/gwt/x?u=http://colormind.io/api/'
 	const requestOptions = {
 		method: 'POST',
 		body: '{"model":"default"}'
