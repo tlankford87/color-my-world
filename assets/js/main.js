@@ -760,42 +760,80 @@
 
 document.querySelector('.button').addEventListener('click', getColors)
 
+function randomColor(){
+	let colorArr = []
+	for(let i = 0; i < 3; i ++){
+		colorArr.push(Math.floor(Math.random() * 256))
+	}
+	return colorArr.join(', ')
+	
+}
+
 function getColors(){
-	const url = 'http://colormind.io/api/'
-	const requestOptions = {
-		method: 'POST',
-		body: '{"model":"default"}'
-	}
+	let firstColor = randomColor()
+	let secondColor = randomColor()
+	let thirdColor = randomColor()
+	let fourthColor = randomColor()
+	let fifthColor = randomColor()
+	// console.log(firstColor)
+	// console.log(secondColor)
+	// console.log(thirdColor)
+	// console.log(fourthColor)
+	// console.log(fifthColor)
+	let box = document.querySelector('.color0')
+	box.style.background = `linear-gradient(45deg, rgb(${firstColor}) 20%, rgb(${secondColor}) 40%, rgb(${thirdColor}) 60%, rgb(${fourthColor}) 80%, rgb(${fifthColor}) 100%)`
 
-	fetch(url, requestOptions)
-		.then(res => res.json())
-		.then(data => {
-			console.log(data)
-			let firstColor = data.result[0].join(', ')
-			let secondColor = data.result[1].join(', ')
-			let thirdColor = data.result[2].join(', ')
-			let fourthColor = data.result[3].join(', ')
-			let fifthColor = data.result[4].join(', ')
-			console.log(firstColor)
-			console.log(secondColor)
-			console.log(thirdColor)
-			console.log(fourthColor)
-			console.log(fifthColor)
-			let box = document.querySelector('.color0')
-			box.style.background = `linear-gradient(45deg, rgb(${firstColor}) 20%, rgb(${secondColor}) 40%, rgb(${thirdColor}) 60%, rgb(${fourthColor}) 80%, rgb(${fifthColor}) 100%)`
+	//color swatch background colors
+	document.querySelector('#colorOne').style.background = `rgb(${firstColor})`
+	document.querySelector('#colorTwo').style.background = `rgb(${secondColor})`
+	document.querySelector('#colorThree').style.background = `rgb(${thirdColor})`
+	document.querySelector('#colorFour').style.background = `rgb(${fourthColor})`
+	document.querySelector('#colorFive').style.background = `rgb(${fifthColor})`
 
-			//color swatch background colors
-			document.querySelector('#colorOne').style.background = `rgb(${firstColor})`
-			document.querySelector('#colorTwo').style.background = `rgb(${secondColor})`
-			document.querySelector('#colorThree').style.background = `rgb(${thirdColor})`
-			document.querySelector('#colorFour').style.background = `rgb(${fourthColor})`
-			document.querySelector('#colorFive').style.background = `rgb(${fifthColor})`
+	//color swatch rgb values
+	document.querySelector('#sOne').innerText = `rgb(${firstColor})`
+	document.querySelector('#sTwo').innerText = `rgb(${secondColor})`
+	document.querySelector('#sThree').innerText = `rgb(${thirdColor})`
+	document.querySelector('#sFour').innerText = `rgb(${fourthColor})`
+	document.querySelector('#sFive').innerText = `rgb(${fifthColor})`
+}
 
-			//color swatch rgb values
-			document.querySelector('#sOne').innerText = `rgb(${firstColor})`
-			document.querySelector('#sTwo').innerText = `rgb(${secondColor})`
-			document.querySelector('#sThree').innerText = `rgb(${thirdColor})`
-			document.querySelector('#sFour').innerText = `rgb(${fourthColor})`
-			document.querySelector('#sFive').innerText = `rgb(${fifthColor})`
-		})
-	}
+// function getColors(){
+// 	const url = 'http://colormind.io/api/'
+// 	const requestOptions = {
+// 		method: 'POST',
+// 		body: '{"model":"default"}'
+// 	}
+
+// 	fetch(url, requestOptions)
+// 		.then(res => res.json())
+// 		.then(data => {
+// 			console.log(data)
+// 			let firstColor = data.result[0].join(', ')
+// 			let secondColor = data.result[1].join(', ')
+// 			let thirdColor = data.result[2].join(', ')
+// 			let fourthColor = data.result[3].join(', ')
+// 			let fifthColor = data.result[4].join(', ')
+// 			console.log(firstColor)
+// 			console.log(secondColor)
+// 			console.log(thirdColor)
+// 			console.log(fourthColor)
+// 			console.log(fifthColor)
+// 			let box = document.querySelector('.color0')
+// 			box.style.background = `linear-gradient(45deg, rgb(${firstColor}) 20%, rgb(${secondColor}) 40%, rgb(${thirdColor}) 60%, rgb(${fourthColor}) 80%, rgb(${fifthColor}) 100%)`
+
+// 			//color swatch background colors
+// 			document.querySelector('#colorOne').style.background = `rgb(${firstColor})`
+// 			document.querySelector('#colorTwo').style.background = `rgb(${secondColor})`
+// 			document.querySelector('#colorThree').style.background = `rgb(${thirdColor})`
+// 			document.querySelector('#colorFour').style.background = `rgb(${fourthColor})`
+// 			document.querySelector('#colorFive').style.background = `rgb(${fifthColor})`
+
+// 			//color swatch rgb values
+// 			document.querySelector('#sOne').innerText = `rgb(${firstColor})`
+// 			document.querySelector('#sTwo').innerText = `rgb(${secondColor})`
+// 			document.querySelector('#sThree').innerText = `rgb(${thirdColor})`
+// 			document.querySelector('#sFour').innerText = `rgb(${fourthColor})`
+// 			document.querySelector('#sFive').innerText = `rgb(${fifthColor})`
+// 		})
+// 	}
