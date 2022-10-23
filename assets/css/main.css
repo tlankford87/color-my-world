@@ -80,8 +80,20 @@ input, select, textarea {
 .swatch{
 	height: 20%;
 	flex: 1 1 18%;
-	
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: .5rem;
 }
+
+.swatch i{
+	align-self: flex-end;
+}
+
+.hidden{
+	display: none;
+}
+
 
 #colorOne{
 	background: rgb(66, 44, 45);
@@ -115,13 +127,15 @@ input, select, textarea {
 				-1px -1px 0 #000;
 }
 
-.content {
+.content h1, p{
 	font-weight: bold;
 	text-shadow: -1px 1px 0 #000,
 				1px 1px 0 #000,
 				1px -1px 0 #000,
 				-1px -1px 0 #000;
 }
+
+
 /* Page */
 
 	@-moz-keyframes load-spinner {

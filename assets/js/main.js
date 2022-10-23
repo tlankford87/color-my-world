@@ -20,27 +20,27 @@
 
 				},
 
-			// Scroll wheel.
-				scrollWheel: {
+			// // Scroll wheel.
+			// 	scrollWheel: {
 
-					// If true, enables scrolling via the scroll wheel.
-						enabled: true,
+			// 		// If true, enables scrolling via the scroll wheel.
+			// 			enabled: true,
 
-					// Sets the scroll wheel factor. (Ideally) a value between 0 and 1 (lower = slower scroll, higher = faster scroll).
-						factor: 1
+			// 		// Sets the scroll wheel factor. (Ideally) a value between 0 and 1 (lower = slower scroll, higher = faster scroll).
+			// 			factor: 1
 
-				},
+			// 	},
 
-			// Scroll zones.
-				scrollZones: {
+			// // Scroll zones.
+			// 	scrollZones: {
 
-					// If true, enables scrolling via scroll zones on the left/right edges of the scren.
-						enabled: true,
+			// 		// If true, enables scrolling via scroll zones on the left/right edges of the scren.
+			// 			enabled: true,
 
-					// Sets the speed at which the page scrolls when a scroll zone is active (higher = faster scroll, lower = slower scroll).
-						speed: 15
+			// 		// Sets the speed at which the page scrolls when a scroll zone is active (higher = faster scroll, lower = slower scroll).
+			// 			speed: 15
 
-				},
+			// 	},
 
 			// Dragging.
 				dragging: {
@@ -232,184 +232,6 @@
 
 			})();
 
-	// Scroll wheel.
-		if (settings.scrollWheel.enabled)
-			(function() {
-
-				// Based on code by @miorel + @pieterv of Facebook (thanks guys :)
-				// github.com/facebook/fixed-data-table/blob/master/src/vendor_upstream/dom/normalizeWheel.js
-					var normalizeWheel = function(event) {
-
-						var	pixelStep = 10,
-							lineHeight = 40,
-							pageHeight = 800,
-							sX = 0,
-							sY = 0,
-							pX = 0,
-							pY = 0;
-
-						// Legacy.
-							if ('detail' in event)
-								sY = event.detail;
-							else if ('wheelDelta' in event)
-								sY = event.wheelDelta / -120;
-							else if ('wheelDeltaY' in event)
-								sY = event.wheelDeltaY / -120;
-
-							if ('wheelDeltaX' in event)
-								sX = event.wheelDeltaX / -120;
-
-						// Side scrolling on FF with DOMMouseScroll.
-							if ('axis' in event
-							&&	event.axis === event.HORIZONTAL_AXIS) {
-								sX = sY;
-								sY = 0;
-							}
-
-						// Calculate.
-							pX = sX * pixelStep;
-							pY = sY * pixelStep;
-
-							if ('deltaY' in event)
-								pY = event.deltaY;
-
-							if ('deltaX' in event)
-								pX = event.deltaX;
-
-							if ((pX || pY)
-							&&	event.deltaMode) {
-
-								if (event.deltaMode == 1) {
-									pX *= lineHeight;
-									pY *= lineHeight;
-								}
-								else {
-									pX *= pageHeight;
-									pY *= pageHeight;
-								}
-
-							}
-
-						// Fallback if spin cannot be determined.
-							if (pX && !sX)
-								sX = (pX < 1) ? -1 : 1;
-
-							if (pY && !sY)
-								sY = (pY < 1) ? -1 : 1;
-
-						// Return.
-							return {
-								spinX: sX,
-								spinY: sY,
-								pixelX: pX,
-								pixelY: pY
-							};
-
-					};
-
-				// Wheel event.
-					$body.on('wheel', function(event) {
-
-						// Disable on <=small.
-							if (breakpoints.active('<=small'))
-								return;
-
-						// Prevent default.
-							event.preventDefault();
-							event.stopPropagation();
-
-						// Stop link scroll.
-							$bodyHtml.stop();
-
-						// Calculate delta, direction.
-							var	n = normalizeWheel(event.originalEvent),
-								x = (n.pixelX != 0 ? n.pixelX : n.pixelY),
-								delta = Math.min(Math.abs(x), 150) * settings.scrollWheel.factor,
-								direction = x > 0 ? 1 : -1;
-
-						// Scroll page.
-							$document.scrollLeft($document.scrollLeft() + (delta * direction));
-
-					});
-
-			})();
-
-	// Scroll zones.
-		if (settings.scrollZones.enabled)
-			(function() {
-
-				var	$left = $('<div class="scrollZone left"></div>'),
-					$right = $('<div class="scrollZone right"></div>'),
-					$zones = $left.add($right),
-					paused = false,
-					intervalId = null,
-					direction,
-					activate = function(d) {
-
-						// Disable on <=small.
-							if (breakpoints.active('<=small'))
-								return;
-
-						// Paused? Bail.
-							if (paused)
-								return;
-
-						// Stop link scroll.
-							$bodyHtml.stop();
-
-						// Set direction.
-							direction = d;
-
-						// Initialize interval.
-							clearInterval(intervalId);
-
-							intervalId = setInterval(function() {
-								$document.scrollLeft($document.scrollLeft() + (settings.scrollZones.speed * direction));
-							}, 25);
-
-					},
-					deactivate = function() {
-
-						// Unpause.
-							paused = false;
-
-						// Clear interval.
-							clearInterval(intervalId);
-
-					};
-
-				$zones
-					.appendTo($wrapper)
-					.on('mouseleave mousedown', function(event) {
-						deactivate();
-					});
-
-				$left
-					.css('left', '0')
-					.on('mouseenter', function(event) {
-						activate(-1);
-					});
-
-				$right
-					.css('right', '0')
-					.on('mouseenter', function(event) {
-						activate(1);
-					});
-
-				$wrapper
-					.on('---pauseScrollZone', function(event) {
-
-						// Pause.
-							paused = true;
-
-						// Unpause after delay.
-							setTimeout(function() {
-								paused = false;
-							}, 500);
-
-					});
-
-			})();
 
 	// Dragging.
 		if (settings.dragging.enabled)
@@ -760,6 +582,14 @@
 
 document.querySelector('.button').addEventListener('click', getColors)
 
+const lock = document.querySelectorAll('.lock')
+Array.from(lock).forEach(element => element.addEventListener('click', lockColor))
+
+function lockColor(click){
+		document.querySelector('.lock').classList.toggle('hidden')
+}
+
+
 function randomColor(){
 	let colorArr = []
 	for(let i = 0; i < 3; i ++){
@@ -797,6 +627,7 @@ function getColors(){
 	document.querySelector('#sFour').innerText = `rgb(${fourthColor})`
 	document.querySelector('#sFive').innerText = `rgb(${fifthColor})`
 }
+
 
 // function getColors(){
 // 	const url = 'http://colormind.io/api/'
