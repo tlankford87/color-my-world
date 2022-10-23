@@ -582,12 +582,17 @@
 
 document.querySelector('.button').addEventListener('click', getColors)
 
-const lock = document.querySelectorAll('.lock')
-Array.from(lock).forEach(element => element.addEventListener('click', lockColor))
+// const lock = document.querySelectorAll('.unlocked .locked')
+// Array.from(lock).forEach(element => element.addEventListener('click', lockColor))
 
-function lockColor(click){
-		document.querySelector('.lock').classList.toggle('hidden')
+let changeIcon = function(icon){
+	icon.classList.toggle('fa-lock-open')
+	icon.classList.toggle('fa-lock')
 }
+
+// function lockColor(){
+// 		document.querySelector('.lock').classList.toggle('fa-lock fa-lock-open')
+// }
 
 
 function randomColor(){
