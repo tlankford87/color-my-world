@@ -610,13 +610,6 @@ function getColors(){
 	let thirdColor = randomColor()
 	let fourthColor = randomColor()
 	let fifthColor = randomColor()
-	// console.log(firstColor)
-	// console.log(secondColor)
-	// console.log(thirdColor)
-	// console.log(fourthColor)
-	// console.log(fifthColor)
-	let box = document.querySelector('.color0')
-	box.style.background = `linear-gradient(170deg, rgb(${firstColor}) 16%, rgb(${secondColor}) 36%, rgb(${thirdColor}) 54%, rgb(${fourthColor}) 72%, rgb(${fifthColor}) 86%)`
 
 	//color swatch background colors
 	//color swatch rgb values
@@ -640,9 +633,10 @@ function getColors(){
 		document.querySelector('#colorFive').style.background = `rgb(${fifthColor})`
 		document.querySelector('#sFive').innerText = `rgb(${fifthColor})`
 	}
-	
 
-	//color swatch rgb values
+	//gradient
+	let box = document.querySelector('.color0')
+	box.style.background = `linear-gradient(170deg, rgb(${firstColor}) 16%, rgb(${secondColor}) 36%, rgb(${thirdColor}) 54%, rgb(${fourthColor}) 72%, rgb(${fifthColor}) 86%)`
 }
 
 
