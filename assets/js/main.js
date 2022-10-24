@@ -619,18 +619,30 @@ function getColors(){
 	box.style.background = `linear-gradient(170deg, rgb(${firstColor}) 16%, rgb(${secondColor}) 36%, rgb(${thirdColor}) 54%, rgb(${fourthColor}) 72%, rgb(${fifthColor}) 86%)`
 
 	//color swatch background colors
-	document.querySelector('#colorOne').style.background = `rgb(${firstColor})`
-	document.querySelector('#colorTwo').style.background = `rgb(${secondColor})`
-	document.querySelector('#colorThree').style.background = `rgb(${thirdColor})`
-	document.querySelector('#colorFour').style.background = `rgb(${fourthColor})`
-	document.querySelector('#colorFive').style.background = `rgb(${fifthColor})`
+	//color swatch rgb values
+	if(document.querySelector('.lock1').classList.contains('fa-lock-open')){
+		document.querySelector('#colorOne').style.background = `rgb(${firstColor})`
+		document.querySelector('#sOne').innerText = `rgb(${firstColor})`
+	}
+	if(document.querySelector('.lock2').classList.contains('fa-lock-open')){
+		document.querySelector('#colorTwo').style.background = `rgb(${secondColor})`
+		document.querySelector('#sTwo').innerText = `rgb(${secondColor})`
+	}
+	if(document.querySelector('.lock3').classList.contains('fa-lock-open')){
+		document.querySelector('#colorThree').style.background = `rgb(${thirdColor})`
+		document.querySelector('#sThree').innerText = `rgb(${thirdColor})`
+	}
+	if(document.querySelector('.lock4').classList.contains('fa-lock-open')){
+		document.querySelector('#colorFour').style.background = `rgb(${fourthColor})`
+		document.querySelector('#sFour').innerText = `rgb(${fourthColor})`
+	}
+	if(document.querySelector('.lock5').classList.contains('fa-lock-open')){
+		document.querySelector('#colorFive').style.background = `rgb(${fifthColor})`
+		document.querySelector('#sFive').innerText = `rgb(${fifthColor})`
+	}
+	
 
 	//color swatch rgb values
-	document.querySelector('#sOne').innerText = `rgb(${firstColor})`
-	document.querySelector('#sTwo').innerText = `rgb(${secondColor})`
-	document.querySelector('#sThree').innerText = `rgb(${thirdColor})`
-	document.querySelector('#sFour').innerText = `rgb(${fourthColor})`
-	document.querySelector('#sFive').innerText = `rgb(${fifthColor})`
 }
 
 

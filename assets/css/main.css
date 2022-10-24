@@ -94,6 +94,9 @@ input, select, textarea {
 	display: none;
 }
 
+i{
+	transition: .3s;
+}
 
 #colorOne{
 	background: rgb(66, 44, 45);
