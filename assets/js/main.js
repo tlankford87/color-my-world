@@ -599,44 +599,56 @@ function randomColor(){
 	let colorArr = []
 	for(let i = 0; i < 3; i ++){
 		colorArr.push(Math.floor(Math.random() * 256))
+		newArr = colorArr.join(', ')
 	}
-	return colorArr.join(', ')
+	return `rgb(${newArr})`
 	
 }
 
 function getColors(){
-	let firstColor = randomColor()
-	let secondColor = randomColor()
-	let thirdColor = randomColor()
-	let fourthColor = randomColor()
-	let fifthColor = randomColor()
+	const lock1 = document.querySelector('.lock1')
+	const lock2 = document.querySelector('.lock2')
+	const lock3 = document.querySelector('.lock3')
+	const lock4 = document.querySelector('.lock4')
+	const lock5 = document.querySelector('.lock5')
+
+	let firstColor = document.querySelector('#sOne').innerText
+	let secondColor = document.querySelector('#sTwo').innerText
+	let thirdColor = document.querySelector('#sThree').innerText
+	let fourthColor = document.querySelector('#sFour').innerText
+	let fifthColor = document.querySelector('#sFive').innerText
 
 	//color swatch background colors
 	//color swatch rgb values
-	if(document.querySelector('.lock1').classList.contains('fa-lock-open')){
-		document.querySelector('#colorOne').style.background = `rgb(${firstColor})`
-		document.querySelector('#sOne').innerText = `rgb(${firstColor})`
+	if(lock1.classList.contains('fa-lock-open')){
+		firstColor = randomColor()
+		document.querySelector('#colorOne').style.background = firstColor
+		document.querySelector('#sOne').innerText = firstColor
 	}
-	if(document.querySelector('.lock2').classList.contains('fa-lock-open')){
-		document.querySelector('#colorTwo').style.background = `rgb(${secondColor})`
-		document.querySelector('#sTwo').innerText = `rgb(${secondColor})`
+	if(lock2.classList.contains('fa-lock-open')){
+		secondColor = randomColor()
+		document.querySelector('#colorTwo').style.background = secondColor
+		document.querySelector('#sTwo').innerText = secondColor
 	}
-	if(document.querySelector('.lock3').classList.contains('fa-lock-open')){
-		document.querySelector('#colorThree').style.background = `rgb(${thirdColor})`
-		document.querySelector('#sThree').innerText = `rgb(${thirdColor})`
+	if(lock3.classList.contains('fa-lock-open')){
+		thirdColor = randomColor()
+		document.querySelector('#colorThree').style.background = thirdColor
+		document.querySelector('#sThree').innerText = thirdColor
 	}
-	if(document.querySelector('.lock4').classList.contains('fa-lock-open')){
-		document.querySelector('#colorFour').style.background = `rgb(${fourthColor})`
-		document.querySelector('#sFour').innerText = `rgb(${fourthColor})`
+	if(lock4.classList.contains('fa-lock-open')){
+		fourthColor = randomColor()
+		document.querySelector('#colorFour').style.background = fourthColor
+		document.querySelector('#sFour').innerText = fourthColor
 	}
-	if(document.querySelector('.lock5').classList.contains('fa-lock-open')){
-		document.querySelector('#colorFive').style.background = `rgb(${fifthColor})`
-		document.querySelector('#sFive').innerText = `rgb(${fifthColor})`
+	if(lock5.classList.contains('fa-lock-open')){
+		fifthColor = randomColor()
+		document.querySelector('#colorFive').style.background = fifthColor
+		document.querySelector('#sFive').innerText = fifthColor
 	}
 
 	//gradient
 	let box = document.querySelector('.color0')
-	box.style.background = `linear-gradient(170deg, rgb(${firstColor}) 16%, rgb(${secondColor}) 36%, rgb(${thirdColor}) 54%, rgb(${fourthColor}) 72%, rgb(${fifthColor}) 86%)`
+	box.style.background = `linear-gradient(170deg, ${firstColor} 16%, ${secondColor} 36%, ${thirdColor} 54%, ${fourthColor} 72%, ${fifthColor} 86%)`
 }
 
 
