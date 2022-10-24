@@ -161,422 +161,422 @@
 				$wrapper
 
 					// Prevent keystrokes inside excluded elements from bubbling.
-						.on('keypress keyup keydown', settings.excludeSelector, function(event) {
+						// .on('keypress keyup keydown', settings.excludeSelector, function(event) {
 
-							// Stop propagation.
-								event.stopPropagation();
+						// 	// Stop propagation.
+						// 		event.stopPropagation();
 
-						});
+						// });
 
 				$window
 
 					// Keypress event.
-						.on('keydown', function(event) {
+						// .on('keydown', function(event) {
 
-							var scrolled = false;
+						// 	var scrolled = false;
 
-							switch (event.keyCode) {
+						// 	// switch (event.keyCode) {
 
-								// Left arrow.
-									case 37:
-										$document.scrollLeft($document.scrollLeft() - settings.keyboardShortcuts.distance);
-										scrolled = true;
-										break;
+						// 	// 	// Left arrow.
+						// 	// 		case 37:
+						// 	// 			$document.scrollLeft($document.scrollLeft() - settings.keyboardShortcuts.distance);
+						// 	// 			scrolled = true;
+						// 	// 			break;
 
-								// Right arrow.
-									case 39:
-										$document.scrollLeft($document.scrollLeft() + settings.keyboardShortcuts.distance);
-										scrolled = true;
-										break;
+						// 	// 	// Right arrow.
+						// 	// 		case 39:
+						// 	// 			$document.scrollLeft($document.scrollLeft() + settings.keyboardShortcuts.distance);
+						// 	// 			scrolled = true;
+						// 	// 			break;
 
-								// Page Up.
-									case 33:
-										$document.scrollLeft($document.scrollLeft() - $window.width() + 100);
-										scrolled = true;
-										break;
+						// 	// 	// Page Up.
+						// 	// 		case 33:
+						// 	// 			$document.scrollLeft($document.scrollLeft() - $window.width() + 100);
+						// 	// 			scrolled = true;
+						// 	// 			break;
 
-								// Page Down, Space.
-									case 34:
-									case 32:
-										$document.scrollLeft($document.scrollLeft() + $window.width() - 100);
-										scrolled = true;
-										break;
+						// 	// 	// Page Down, Space.
+						// 	// 		case 34:
+						// 	// 		case 32:
+						// 	// 			$document.scrollLeft($document.scrollLeft() + $window.width() - 100);
+						// 	// 			scrolled = true;
+						// 	// 			break;
 
-								// Home.
-									case 36:
-										$document.scrollLeft(0);
-										scrolled = true;
-										break;
+						// 	// 	// Home.
+						// 	// 		case 36:
+						// 	// 			$document.scrollLeft(0);
+						// 	// 			scrolled = true;
+						// 	// 			break;
 
-								// End.
-									case 35:
-										$document.scrollLeft($document.width());
-										scrolled = true;
-										break;
+						// 	// 	// End.
+						// 	// 		case 35:
+						// 	// 			$document.scrollLeft($document.width());
+						// 	// 			scrolled = true;
+						// 	// 			break;
 
-							}
+						// 	// }
 
-							// Scrolled?
-								if (scrolled) {
+						// 	// Scrolled?
+						// 		if (scrolled) {
 
-									// Prevent default.
-										event.preventDefault();
-										event.stopPropagation();
+						// 			// Prevent default.
+						// 				event.preventDefault();
+						// 				event.stopPropagation();
 
-									// Stop link scroll.
-										$bodyHtml.stop();
+						// 			// Stop link scroll.
+						// 				$bodyHtml.stop();
 
-								}
+						// 		}
 
-						});
+						// });
 
 			})();
 
 
 	// Dragging.
-		if (settings.dragging.enabled)
-			(function() {
+		// if (settings.dragging.enabled)
+		// 	(function() {
 
-				var dragging = false,
-					dragged = false,
-					distance = 0,
-					startScroll,
-					momentumIntervalId, velocityIntervalId,
-					startX, currentX, previousX,
-					velocity, direction;
+		// 		var dragging = false,
+		// 			dragged = false,
+		// 			distance = 0,
+		// 			startScroll,
+		// 			momentumIntervalId, velocityIntervalId,
+		// 			startX, currentX, previousX,
+		// 			velocity, direction;
 
-				$wrapper
+		// 		$wrapper
 
-					// Prevent image drag and drop.
-						.on('mouseup mousemove mousedown', '.image, img', function(event) {
-							event.preventDefault();
-						})
+		// 			// Prevent image drag and drop.
+		// 				.on('mouseup mousemove mousedown', '.image, img', function(event) {
+		// 					event.preventDefault();
+		// 				})
 
-					// Prevent mouse events inside excluded elements from bubbling.
-						.on('mouseup mousemove mousedown', settings.excludeSelector, function(event) {
+		// 			// Prevent mouse events inside excluded elements from bubbling.
+		// 				.on('mouseup mousemove mousedown', settings.excludeSelector, function(event) {
 
-							// Prevent event from bubbling.
-								event.stopPropagation();
+		// 					// Prevent event from bubbling.
+		// 						event.stopPropagation();
 
-							// End drag.
-								dragging = false;
-								$wrapper.removeClass('is-dragging');
-								clearInterval(velocityIntervalId);
-								clearInterval(momentumIntervalId);
+		// 					// End drag.
+		// 						dragging = false;
+		// 						$wrapper.removeClass('is-dragging');
+		// 						clearInterval(velocityIntervalId);
+		// 						clearInterval(momentumIntervalId);
 
-							// Pause scroll zone.
-								$wrapper.triggerHandler('---pauseScrollZone');
+		// 					// Pause scroll zone.
+		// 						$wrapper.triggerHandler('---pauseScrollZone');
 
-						})
+		// 				})
 
-					// Mousedown event.
-						.on('mousedown', function(event) {
+		// 			// Mousedown event.
+		// 				.on('mousedown', function(event) {
 
-							// Disable on <=small.
-								if (breakpoints.active('<=small'))
-									return;
+		// 					// Disable on <=small.
+		// 						if (breakpoints.active('<=small'))
+		// 							return;
 
-							// Clear momentum interval.
-								clearInterval(momentumIntervalId);
+		// 					// Clear momentum interval.
+		// 						clearInterval(momentumIntervalId);
 
-							// Stop link scroll.
-								$bodyHtml.stop();
+		// 					// Stop link scroll.
+		// 						$bodyHtml.stop();
 
-							// Start drag.
-								dragging = true;
-								$wrapper.addClass('is-dragging');
+		// 					// Start drag.
+		// 						dragging = true;
+		// 						$wrapper.addClass('is-dragging');
 
-							// Initialize and reset vars.
-								startScroll = $document.scrollLeft();
-								startX = event.clientX;
-								previousX = startX;
-								currentX = startX;
-								distance = 0;
-								direction = 0;
+		// 					// Initialize and reset vars.
+		// 						startScroll = $document.scrollLeft();
+		// 						startX = event.clientX;
+		// 						previousX = startX;
+		// 						currentX = startX;
+		// 						distance = 0;
+		// 						direction = 0;
 
-							// Initialize velocity interval.
-								clearInterval(velocityIntervalId);
+		// 					// Initialize velocity interval.
+		// 						clearInterval(velocityIntervalId);
 
-								velocityIntervalId = setInterval(function() {
+		// 						velocityIntervalId = setInterval(function() {
 
-									// Calculate velocity, direction.
-										velocity = Math.abs(currentX - previousX);
-										direction = (currentX > previousX ? -1 : 1);
+		// 							// Calculate velocity, direction.
+		// 								velocity = Math.abs(currentX - previousX);
+		// 								direction = (currentX > previousX ? -1 : 1);
 
-									// Update previous X.
-										previousX = currentX;
+		// 							// Update previous X.
+		// 								previousX = currentX;
 
-								}, 50);
+		// 						}, 50);
 
-						})
+		// 				})
 
-					// Mousemove event.
-						.on('mousemove', function(event) {
+		// 			// Mousemove event.
+		// 				.on('mousemove', function(event) {
 
-							// Not dragging? Bail.
-								if (!dragging)
-									return;
+		// 					// Not dragging? Bail.
+		// 						if (!dragging)
+		// 							return;
 
-							// Velocity.
-								currentX = event.clientX;
+		// 					// Velocity.
+		// 						currentX = event.clientX;
 
-							// Scroll page.
-								$document.scrollLeft(startScroll + (startX - currentX));
+		// 					// Scroll page.
+		// 						$document.scrollLeft(startScroll + (startX - currentX));
 
-							// Update distance.
-								distance = Math.abs(startScroll - $document.scrollLeft());
+		// 					// Update distance.
+		// 						distance = Math.abs(startScroll - $document.scrollLeft());
 
-							// Distance exceeds threshold? Disable pointer events on all descendents.
-								if (!dragged
-								&&	distance > settings.dragging.threshold) {
+		// 					// Distance exceeds threshold? Disable pointer events on all descendents.
+		// 						if (!dragged
+		// 						&&	distance > settings.dragging.threshold) {
 
-									$wrapper.addClass('is-dragged');
+		// 							$wrapper.addClass('is-dragged');
 
-									dragged = true;
+		// 							dragged = true;
 
-								}
+		// 						}
 
-						})
+		// 				})
 
-					// Mouseup/mouseleave event.
-						.on('mouseup mouseleave', function(event) {
+		// 			// Mouseup/mouseleave event.
+		// 				.on('mouseup mouseleave', function(event) {
 
-							var m;
+		// 					var m;
 
-							// Not dragging? Bail.
-								if (!dragging)
-									return;
+		// 					// Not dragging? Bail.
+		// 						if (!dragging)
+		// 							return;
 
-							// Dragged? Re-enable pointer events on all descendents.
-								if (dragged) {
+		// 					// Dragged? Re-enable pointer events on all descendents.
+		// 						if (dragged) {
 
-									setTimeout(function() {
-										$wrapper.removeClass('is-dragged');
-									}, 100);
+		// 							setTimeout(function() {
+		// 								$wrapper.removeClass('is-dragged');
+		// 							}, 100);
 
-									dragged = false;
+		// 							dragged = false;
 
-								}
+		// 						}
 
-							// Distance exceeds threshold? Prevent default.
-								if (distance > settings.dragging.threshold)
-									event.preventDefault();
+		// 					// Distance exceeds threshold? Prevent default.
+		// 						if (distance > settings.dragging.threshold)
+		// 							event.preventDefault();
 
-							// End drag.
-								dragging = false;
-								$wrapper.removeClass('is-dragging');
-								clearInterval(velocityIntervalId);
-								clearInterval(momentumIntervalId);
+		// 					// End drag.
+		// 						dragging = false;
+		// 						$wrapper.removeClass('is-dragging');
+		// 						clearInterval(velocityIntervalId);
+		// 						clearInterval(momentumIntervalId);
 
-							// Pause scroll zone.
-								$wrapper.triggerHandler('---pauseScrollZone');
+		// 					// Pause scroll zone.
+		// 						$wrapper.triggerHandler('---pauseScrollZone');
 
-							// Initialize momentum interval.
-								if (settings.dragging.momentum > 0) {
+		// 					// Initialize momentum interval.
+		// 						if (settings.dragging.momentum > 0) {
 
-									m = velocity;
+		// 							m = velocity;
 
-									momentumIntervalId = setInterval(function() {
+		// 							momentumIntervalId = setInterval(function() {
 
-										// Momentum is NaN? Bail.
-											if (isNaN(m)) {
+		// 								// Momentum is NaN? Bail.
+		// 									if (isNaN(m)) {
 
-												clearInterval(momentumIntervalId);
-												return;
+		// 										clearInterval(momentumIntervalId);
+		// 										return;
 
-											}
+		// 									}
 
-										// Scroll page.
-											$document.scrollLeft($document.scrollLeft() + (m * direction));
+		// 								// Scroll page.
+		// 									$document.scrollLeft($document.scrollLeft() + (m * direction));
 
-										// Decrease momentum.
-											m = m * settings.dragging.momentum;
+		// 								// Decrease momentum.
+		// 									m = m * settings.dragging.momentum;
 
-										// Negligible momentum? Clear interval and end.
-											if (Math.abs(m) < 1)
-												clearInterval(momentumIntervalId);
+		// 								// Negligible momentum? Clear interval and end.
+		// 									if (Math.abs(m) < 1)
+		// 										clearInterval(momentumIntervalId);
 
-									}, 15);
+		// 							}, 15);
 
-								}
+		// 						}
 
-						});
+		// 				});
 
-			})();
+		// 	})();
 
 	// Link scroll.
 		$wrapper
-			.on('mousedown mouseup', 'a[href^="#"]', function(event) {
+			// .on('mousedown mouseup', 'a[href^="#"]', function(event) {
 
-				// Stop propagation.
-					event.stopPropagation();
+			// 	// Stop propagation.
+			// 		event.stopPropagation();
 
-			})
-			.on('click', 'a[href^="#"]', function(event) {
+			// })
+			// .on('click', 'a[href^="#"]', function(event) {
 
-				var	$this = $(this),
-					href = $this.attr('href'),
-					$target, x, y;
+			// 	var	$this = $(this),
+			// 		href = $this.attr('href'),
+			// 		$target, x, y;
 
-				// Get target.
-					if (href == '#'
-					||	($target = $(href)).length == 0)
-						return;
+			// 	// Get target.
+			// 		if (href == '#'
+			// 		||	($target = $(href)).length == 0)
+			// 			return;
 
-				// Prevent default.
-					event.preventDefault();
-					event.stopPropagation();
+			// 	// Prevent default.
+			// 		event.preventDefault();
+			// 		event.stopPropagation();
 
-				// Calculate x, y.
-					if (breakpoints.active('<=small')) {
+			// 	// Calculate x, y.
+			// 		if (breakpoints.active('<=small')) {
 
-						x = $target.offset().top - (Math.max(0, $window.height() - $target.outerHeight()) / 2);
-						y = { scrollTop: x };
+			// 			x = $target.offset().top - (Math.max(0, $window.height() - $target.outerHeight()) / 2);
+			// 			y = { scrollTop: x };
 
-					}
-					else {
+			// 		}
+			// 		else {
 
-						x = $target.offset().left - (Math.max(0, $window.width() - $target.outerWidth()) / 2);
-						y = { scrollLeft: x };
+			// 			x = $target.offset().left - (Math.max(0, $window.width() - $target.outerWidth()) / 2);
+			// 			y = { scrollLeft: x };
 
-					}
+			// 		}
 
-				// Scroll.
-					$bodyHtml
-						.stop()
-						.animate(
-							y,
-							settings.linkScrollSpeed,
-							'swing'
-						);
+			// 	// Scroll.
+			// 		$bodyHtml
+			// 			.stop()
+			// 			.animate(
+			// 				y,
+			// 				settings.linkScrollSpeed,
+			// 				'swing'
+			// 			);
 
-			});
+			// });
 
 	// Gallery.
-		$('.gallery')
-			.on('click', 'a', function(event) {
+		// $('.gallery')
+		// 	.on('click', 'a', function(event) {
 
-				var $a = $(this),
-					$gallery = $a.parents('.gallery'),
-					$modal = $gallery.children('.modal'),
-					$modalImg = $modal.find('img'),
-					href = $a.attr('href');
+		// 		var $a = $(this),
+		// 			$gallery = $a.parents('.gallery'),
+		// 			$modal = $gallery.children('.modal'),
+		// 			$modalImg = $modal.find('img'),
+		// 			href = $a.attr('href');
 
-				// Not an image? Bail.
-					if (!href.match(/\.(jpg|gif|png|mp4)$/))
-						return;
+		// 		// Not an image? Bail.
+		// 			if (!href.match(/\.(jpg|gif|png|mp4)$/))
+		// 				return;
 
-				// Prevent default.
-					event.preventDefault();
-					event.stopPropagation();
+		// 		// Prevent default.
+		// 			event.preventDefault();
+		// 			event.stopPropagation();
 
-				// Locked? Bail.
-					if ($modal[0]._locked)
-						return;
+		// 		// Locked? Bail.
+		// 			if ($modal[0]._locked)
+		// 				return;
 
-				// Lock.
-					$modal[0]._locked = true;
+		// 		// Lock.
+		// 			$modal[0]._locked = true;
 
-				// Set src.
-					$modalImg.attr('src', href);
+		// 		// Set src.
+		// 			$modalImg.attr('src', href);
 
-				// Set visible.
-					$modal.addClass('visible');
+		// 		// Set visible.
+		// 			$modal.addClass('visible');
 
-				// Focus.
-					$modal.focus();
+		// 		// Focus.
+		// 			$modal.focus();
 
-				// Delay.
-					setTimeout(function() {
+		// 		// Delay.
+		// 			setTimeout(function() {
 
-						// Unlock.
-							$modal[0]._locked = false;
+		// 				// Unlock.
+		// 					$modal[0]._locked = false;
 
-					}, 600);
+		// 			}, 600);
 
-			})
-			.on('click', '.modal', function(event) {
+		// 	})
+		// 	.on('click', '.modal', function(event) {
 
-				var $modal = $(this),
-					$modalImg = $modal.find('img');
+		// 		var $modal = $(this),
+		// 			$modalImg = $modal.find('img');
 
-				// Locked? Bail.
-					if ($modal[0]._locked)
-						return;
+		// 		// Locked? Bail.
+		// 			if ($modal[0]._locked)
+		// 				return;
 
-				// Already hidden? Bail.
-					if (!$modal.hasClass('visible'))
-						return;
+		// 		// Already hidden? Bail.
+		// 			if (!$modal.hasClass('visible'))
+		// 				return;
 
-				// Stop propagation.
-					event.stopPropagation();
+		// 		// Stop propagation.
+		// 			event.stopPropagation();
 
-				// Lock.
-					$modal[0]._locked = true;
+		// 		// Lock.
+		// 			$modal[0]._locked = true;
 
-				// Clear visible, loaded.
-					$modal
-						.removeClass('loaded')
+		// 		// Clear visible, loaded.
+		// 			$modal
+		// 				.removeClass('loaded')
 
-				// Delay.
-					setTimeout(function() {
+		// 		// Delay.
+		// 			setTimeout(function() {
 
-						$modal
-							.removeClass('visible')
+		// 				$modal
+		// 					.removeClass('visible')
 
-						// Pause scroll zone.
-							$wrapper.triggerHandler('---pauseScrollZone');
+		// 				// Pause scroll zone.
+		// 					$wrapper.triggerHandler('---pauseScrollZone');
 
-						setTimeout(function() {
+		// 				setTimeout(function() {
 
-							// Clear src.
-								$modalImg.attr('src', '');
+		// 					// Clear src.
+		// 						$modalImg.attr('src', '');
 
-							// Unlock.
-								$modal[0]._locked = false;
+		// 					// Unlock.
+		// 						$modal[0]._locked = false;
 
-							// Focus.
-								$body.focus();
+		// 					// Focus.
+		// 						$body.focus();
 
-						}, 475);
+		// 				}, 475);
 
-					}, 125);
+		// 			}, 125);
 
-			})
-			.on('keypress', '.modal', function(event) {
+		// 	})
+			// .on('keypress', '.modal', function(event) {
 
-				var $modal = $(this);
+			// 	var $modal = $(this);
 
-				// Escape? Hide modal.
-					if (event.keyCode == 27)
-						$modal.trigger('click');
+			// 	// Escape? Hide modal.
+			// 		if (event.keyCode == 27)
+			// 			$modal.trigger('click');
 
-			})
-			.on('mouseup mousedown mousemove', '.modal', function(event) {
+			// })
+			// .on('mouseup mousedown mousemove', '.modal', function(event) {
 
-				// Stop propagation.
-					event.stopPropagation();
+			// 	// Stop propagation.
+			// 		event.stopPropagation();
 
-			})
-			.prepend('<div class="modal" tabIndex="-1"><div class="inner"><img src="" /></div></div>')
-				.find('img')
-					.on('load', function(event) {
+			// })
+			// .prepend('<div class="modal" tabIndex="-1"><div class="inner"><img src="" /></div></div>')
+			// 	.find('img')
+			// 		.on('load', function(event) {
 
-						var $modalImg = $(this),
-							$modal = $modalImg.parents('.modal');
+			// 			var $modalImg = $(this),
+			// 				$modal = $modalImg.parents('.modal');
 
-						setTimeout(function() {
+			// 			setTimeout(function() {
 
-							// No longer visible? Bail.
-								if (!$modal.hasClass('visible'))
-									return;
+			// 				// No longer visible? Bail.
+			// 					if (!$modal.hasClass('visible'))
+			// 						return;
 
-							// Set loaded.
-								$modal.addClass('loaded');
+			// 				// Set loaded.
+			// 					$modal.addClass('loaded');
 
-						}, 275);
+			// 			}, 275);
 
-					});
+			// 		});
 
 })(jQuery);
 
