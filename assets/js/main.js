@@ -581,6 +581,7 @@
 })(jQuery);
 
 document.querySelector('.button').addEventListener('click', getColors)
+document.querySelector('.button').addEventListener('touchstart', getColors)
 
 // const lock = document.querySelectorAll('.unlocked .locked')
 // Array.from(lock).forEach(element => element.addEventListener('click', lockColor))
