@@ -606,7 +606,6 @@ function randomColor(){
 }
 
 function getColors(){
-	alert('you clicked')
 	const lock1 = document.querySelector('.lock1')
 	const lock2 = document.querySelector('.lock2')
 	const lock3 = document.querySelector('.lock3')
