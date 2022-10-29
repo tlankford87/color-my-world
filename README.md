@@ -15,7 +15,7 @@ This actually started off as a mini app using a color palette generating api. It
 
 Optimizations
 
-In the future I plan to add the ability for user accounts, as well as the ability to save custom color palettes and refer back to them at later dates. I also want to add the ability to get grayscale color palettes or color palettes that follow a color scheme. i.e. red, blue, purple, and get 5 colors falling within the range of the color scheme.
+In the future I plan to add the ability for user accounts, as well as the ability to save custom color palettes and refer back to them at later dates. I also want to add the ability to get grayscale color palettes or color palettes that follow a color scheme. i.e. red, blue, purple, and get 5 colors falling within the range of the color scheme. Also plan to add the ability to copy the rgb code by clicking on the color palette. As well as, the ability to change the background color to dark mode.
 
 
 Lessons Learned:
