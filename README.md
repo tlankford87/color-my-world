@@ -20,5 +20,5 @@ In the future I plan to add the ability for user accounts, as well as the abilit
 
 Lessons Learned:
 
-Not being a designer I decided to use a template for the layout. I removed what I didn't need and then built from there. This allowed me to practice reading an already established code base. It wasnt until I went to try the app on mobile that I discovered the template had jquery in it that changed the default behavior and clicking on mobile. This was preventing any of the click event listeners from being activated on mobile. So I dove back into the code base and found the jquery that was the issue and removed it. I also learned about onclick in html to do the lock icons for the color swatches.
+Not being a designer I decided to use a template for the layout. I removed what I didn't need and then built from there. This allowed me to practice reading an already established code base. It wasnt until I went to try the app on mobile that I discovered the template had jquery in it that changed the default behavior of clicking on mobile. This was preventing any of the click event listeners from being activated on mobile. So I dove back into the code base and found the jquery that was the issue and removed it. I also learned about onclick in html to do the lock icons for the color swatches.
 
