@@ -1,6 +1,6 @@
 Color My World
 
-Color My World is a mini app created to help artist with picking random color palettes. It uses a hard coded randomizer and gives you 5 unique colors every time you press the random button. You do have the ability to lock any swatch you like the color of and keep randomizing the others.
+Color My World is a mini app created to help artists with picking random color palettes. It uses a hard coded randomizer and gives you 5 unique colors every time you press the random button. You do have the ability to lock any swatch you like the color of and keep randomizing the others.
 
 Link to project: https://colormyworld.netlify.app
 
